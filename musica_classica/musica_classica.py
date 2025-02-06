@@ -68,7 +68,7 @@ def stampa_compositore(compositore, collezione):
         durata = "%.2f" % durata
         print(f"- {nc}: {brani_unici[nc]}, {durata} secondi")
         print(f"\t{n} movimenti, in media {media} secondi")
-    
+
 def stampa_formazione_musicale(formazione_musicale, collezione):
     presente = False
     stampati = set()
@@ -91,7 +91,5 @@ def stampa_formazione_musicale(formazione_musicale, collezione):
 def main():
     collezione = leggi_dati('musicnet.csv')
     gestisci_interrogazioni('richieste.txt', collezione)
-    
-    return
 
 main()

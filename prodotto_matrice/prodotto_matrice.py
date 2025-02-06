@@ -3,20 +3,21 @@
 nomi_file = ['matrices.txt', 'matrices_error.txt', 'matrices_large.txt']
 
 def leggi_matrici(nome_file):
-    sequenza = list()
+    sequenza = list() # lista di matrici
     
     file = open(nome_file, 'r')
     for line in file:
-        matrix = dict()
+        matrix = dict() # matrice -> numero di righe ('r'), numero di colonne ('c'), matrice ('mat')
         values = line.strip().split(' ')
-        matrix['r'] = int(values[0])
-        matrix['c'] = int(values[1])
-        matrix['mat'] = list()
-        for i in range(matrix['r']):
-            row = list()
-            for j in range(matrix['c']):
-                row.append(int(values[2 + i*matrix['c'] + j]))
-            matrix['mat'].append(row)
+        matrix['r'] = int(values[0]) # elementi in una riga
+        matrix['c'] = int(values[1]) # elementi in una colonna
+        matrix['mat'] = list() # inizializzare la lista di righe
+        for i in range(matrix['r']): # da 0 a r-1 (per ogni riga)
+            col = list() # colonne nella riga i-esima
+            for j in range(matrix['c']): # da 0 a c-1 (per ogni colonna nella riga)
+                col.append(int(values[2 + i*matrix['c'] + j]))  # i*r = "offset" di riga (quale riga prendere), 
+                                                                # j = "offset" di colonna (quale colonna prendere)
+            matrix['mat'].append(col)
         sequenza.append(matrix)
         
     return sequenza
@@ -90,10 +91,10 @@ def stampa_matrice(matrice):
     c = matrice['c']
     mat = matrice['mat']
     
-    for i in range(r):
+    for i in range(r): # per ogni riga
         print("\t", end="")
-        for j in range(c):
-            print(mat[i][j], end = "\t")
+        for j in range(c): # per ogni colonna
+            print(mat[i][j], end = "\t") # stampa il valore in posizione (i, j)
         print()
 
 def main():
