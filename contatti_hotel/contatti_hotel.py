@@ -29,7 +29,9 @@ def valuta_sospetti(nome_file, presenze):
         for nome in presenze:
             corrente = presenze[nome]
             # se si sta considerando il sospetto stesso oppure i tempi non si intersecano
-            if nome == sospetto or (corrente['dayStart'] > sospetto_dict['dayEnd'] or corrente['dayEnd'] < sospetto_dict['dayStart']):
+            if  (nome == sospetto or 
+                (corrente['dayStart'] > sospetto_dict['dayEnd'] 
+                 or corrente['dayEnd'] < sospetto_dict['dayStart'])):
                 continue
             trovato = True
             print(f"Contatto con {nome}, telefono {corrente['numTel']}")
@@ -42,6 +44,7 @@ def valuta_sospetti(nome_file, presenze):
 
 def main():
     presenze = leggi_presenze('presenze.txt')
+    
     valuta_sospetti('sospetti.txt', presenze)
     print()
     
