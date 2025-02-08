@@ -1,7 +1,7 @@
 def leggi_personaggi(nome_file):
     file = open(nome_file, 'r')
 
-    prop = file.readline().strip().split(';')
+    proprieta = file.readline().strip().split(';') # ["Colore Capelli", "Occhi", "Occhiali"]
 
     # lista di personaggi (dizionari)
     personaggi = []
@@ -9,12 +9,12 @@ def leggi_personaggi(nome_file):
     for line in file:
         valori = line.strip().split(';')
         personaggio = {}
-        for i in range(len(prop)):
-            personaggio[prop[i]] = valori[i]
+        for i in range(len(proprieta)): # 0 -> numero di proprietà - 1
+            personaggio[proprieta[i]] = valori[i]
         personaggi.append(personaggio)
     
+    file.close()
     return personaggi
-
 
 def gioca_partita(nome_file, personaggi):
     # copio la lista di personaggi
@@ -23,7 +23,7 @@ def gioca_partita(nome_file, personaggi):
     file = open(nome_file, 'r')
     mosse = 0
     for line in file:
-        [proprieta, valore] = line.rstrip().split('=')
+        [proprieta, valore] = line.strip().split('=')
         mosse += 1
         print(f'\nMossa {mosse} - Domanda: {proprieta} = {valore} ?')
         
